@@ -1,14 +1,16 @@
-document.getElementById('generateBranch').addEventListener('click', () => {
+document.addEventListener('DOMContentLoaded', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { action: "getTicketInfo" }, (response) => {
-            if (response && response.ticketInfo) {
-                const branchName = response.ticketInfo;
-                document.getElementById('branchName').innerText = branchName;
+        chrome.tabs.sendMessage(tabs[0].id, { action: "getBranchName" }, (response) => {
+            if (response && response.branchName) {
+                const branchName = response.branchName;
                 navigator.clipboard.writeText(branchName).then(() => {
                     console.log(`Branch name "${branchName}" copied to clipboard.`);
                 }).catch(err => {
                     console.error('Could not copy text: ', err);
                 });
+                document.getElementById('branchName').innerText = `Copied: \n "${branchName}"`;
+            } else {
+                document.getElementById('branchName').innerText = 'Failed to fetch branch name.';
             }
         });
     });

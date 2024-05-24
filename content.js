@@ -7,15 +7,14 @@ const TicketTypeMapping = {
 };
 
 function getCategoryForTicketType(ticketType) {
-  return TicketTypeMapping[ticketType] || "unknown";
+  return TicketTypeMapping[ticketType] || null;
 }
 
-function getTicketInfo() {
+function getBranchName() {
   const ticketNumber = document.getElementById('key-val').getAttribute('data-issue-key');
   const ticketTitle = document.getElementById('summary-val').textContent.trim();  
   const ticketType = document.getElementById('type-val').textContent.trim();  
   const ticketCategory = getCategoryForTicketType(ticketType);
-
 
   if (ticketNumber && ticketTitle && ticketCategory) {
     return `${ticketCategory}/${ticketNumber}_${ticketTitle.replace(/\s+/g, '-').toLowerCase()}`;
@@ -24,8 +23,8 @@ function getTicketInfo() {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "getTicketInfo") {
-    const ticketInfo = getTicketInfo();
-    sendResponse({ ticketInfo: ticketInfo });
+  if (request.action === "getBranchName") {
+    const branchName = getBranchName();
+    sendResponse({ branchName: branchName });
   }
 });
