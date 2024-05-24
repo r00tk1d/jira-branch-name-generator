@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 document.getElementById('branchName').innerText = `Copied: \n "${branchName}"`;
             } else {
-                document.getElementById('branchName').innerText = 'Failed to fetch branch name.';
+                document.getElementById('branchName').innerText = 'Failed to fetch branch name. See console for more details.';
             }
         });
 

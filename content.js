@@ -2,7 +2,7 @@ const TicketTypeMapping = {
   "Bug": "bugfix",
   "Technical Debt": "bugfix",
   "Story": "feature",
-  "Enhancement": "feature",
+  "Sub-task": "feature",
   // Add other mappings as needed
 };
 
@@ -16,8 +16,15 @@ function getBranchName() {
   const ticketType = document.getElementById('type-val').textContent.trim();  
   const ticketCategory = getCategoryForTicketType(ticketType);
 
+  console.log('ticketNumber:', ticketNumber);
+  console.log('ticketTitle:', ticketTitle);
+  console.log('ticketType:', ticketType);
+  console.log('ticketCategory:', ticketCategory);
+
   if (ticketNumber && ticketTitle && ticketCategory) {
-    return `${ticketCategory}/${ticketNumber}_${ticketTitle.replace(/\s+/g, '-').toLowerCase()}`;
+    const branchName = `${ticketCategory}/${ticketNumber}_${ticketTitle.replace(/\s+/g, '-').toLowerCase()}`;
+    console.log('branchName:', branchName);
+    return branchName;
   }
   return null;
 }
