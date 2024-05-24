@@ -13,5 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('branchName').innerText = 'Failed to fetch branch name.';
             }
         });
+
+        // Close the popup after 5 seconds
+        setTimeout(() => {
+            window.close();
+        }, 3500);
+
     });
 });
