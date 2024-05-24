@@ -1,0 +1,1 @@
+# jira-branch-name-generator-extension
