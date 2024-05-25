@@ -1,4 +1,4 @@
-const TicketTypeMapping = {
+const TicketTypeMap = {
   "Bug": "bugfix",
   "Technical Debt": "bugfix",
   "Story": "feature",
@@ -6,8 +6,9 @@ const TicketTypeMapping = {
   // Add other mappings as needed
 };
 
+
 function getCategoryForTicketType(ticketType) {
-  return TicketTypeMapping[ticketType] || null;
+  return TicketTypeMap[ticketType] || null;
 }
 
 function getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory) {
