@@ -6,7 +6,7 @@ The branch name has the following structure:
 
 `<category>/<JIRA-ID>-<short-description>`
 
-1. Prefix: The category is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
+1. Category: The category is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
 2. JIRA ID
 3. Short Description: The title of the jira ticket in lower, kebap case. The extension also removes any character that is not a letter or a digit.
 
