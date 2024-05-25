@@ -29,8 +29,9 @@ function getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory) {
   }
 
   if (errorMessages.length > 0) {
-    errorMessage = errorMessages.join('\n');
+    errorMessage = 'Error: \n' + errorMessages.join('\n');
   }
+  
   return errorMessage;
 }
 
@@ -54,7 +55,7 @@ function getBranchName() {
   let errorMessage = null;
 
   if (ticketID && ticketTitle && ticketCategory) {
-    branchName = `${ticketCategory}/${ticketID}_${ticketTitle.replace(/\s+/g, '-').toLowerCase()}`;
+    branchName = `${ticketCategory}/${ticketID}-${ticketTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-').toLowerCase()}`;
     console.log('branchName:', branchName);
   } else {
     errorMessage = getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory);

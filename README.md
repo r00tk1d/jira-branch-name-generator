@@ -1,14 +1,14 @@
 # Jira Branch Name Generator to Clipboard Chromium Extension
 
-As the awesome name of this extension suggests, this extension extracts all needed informations for a git branch name created for a jira ticket. The branch has the following structure:
+As the awesome name of this extension suggests, this extension generates the branch name for a given jira ticket. To generate and copy the branch name, just click on the extension icon. 
 
-`feature/ABC-12345_create-a-user-interface-for-the-mapping-please`
+The branch name has the following structure:
 
-1. The prefix until the `/` is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
-2. The Ticket ID until the `_` is the ticket number in the jira ticket.
-3. The rest of the branch name is the title of the jira ticket in lower, kebap case.
+`<category>/<JIRA-ID>-<short-description>`
 
-To generate and copy the branch name, just click on the extension icon.
+1. Prefix: The category is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
+2. JIRA ID
+3. Short Description: The title of the jira ticket in lower, kebap case. The extension also removes any character that is not a letter or a digit.
 
 ## Installation
 
@@ -23,3 +23,10 @@ To generate and copy the branch name, just click on the extension icon.
 
 4. **Load the Unpacked Extension**
    - Click "Load unpacked" and select the cloned folder.
+
+
+
+
+
+Error: als prefix message
+icon anpassen
