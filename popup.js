@@ -5,11 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const branchName = response.branchName;
                 navigator.clipboard.writeText(branchName).then(() => {
                     console.log(`Branch name "${branchName}" copied to clipboard.`);
+                    document.getElementById('branchName').innerText = `Copied: \n "${branchName}"`;
                 }).catch(err => {
                     console.error('Could not copy text: ', err);
+                    document.getElementById('branchName').innerText = `Writing branch name to clipboard failed."`;
                 });
-                document.getElementById('branchName').innerText = `Copied: \n "${branchName}"`;
-            } else {
+            } else if (response && response.errorMessage !== null) {
+                const errorMessage = response.errorMessage;
+                document.getElementById('branchName').innerText = errorMessage;
+            }
+            else {
                 document.getElementById('branchName').innerText = 'Failed to fetch branch name. See console for more details.';
             }
         });

@@ -10,28 +10,65 @@ function getCategoryForTicketType(ticketType) {
   return TicketTypeMapping[ticketType] || null;
 }
 
+function getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory) {
+  let errorMessage = null;
+  const errorMessages = [];
+
+  if (!ticketID) {
+    errorMessages.push('There is no Ticket ID on this page.');
+  }
+  if (!ticketTitle) {
+    errorMessages.push('There is no Ticket Title on this page.');
+  }
+  if (!ticketType) {
+    errorMessages.push('There is no Ticket Type on this page.');
+  }
+  if (ticketType && !ticketCategory) {
+    errorMessages.push(`There is no mapping defined for Ticket Type "${ticketType}"`);
+  }
+
+  if (errorMessages.length > 0) {
+    errorMessage = errorMessages.join('\n');
+  }
+  return errorMessage;
+}
+
+
 function getBranchName() {
-  const ticketNumber = document.getElementById('key-val').getAttribute('data-issue-key');
-  const ticketTitle = document.getElementById('summary-val').textContent.trim();  
-  const ticketType = document.getElementById('type-val').textContent.trim();  
+  const ticketIDElement = document.getElementById('key-val');
+  const ticketTitleElement = document.getElementById('summary-val');
+  const ticketTypeElement = document.getElementById('type-val');
+
+  const ticketID = ticketIDElement ? ticketIDElement.getAttribute('data-issue-key') : null;
+  const ticketTitle = ticketTitleElement ? ticketTitleElement.textContent.trim() : null;
+  const ticketType = ticketTypeElement ? ticketTypeElement.textContent.trim() : null;
   const ticketCategory = getCategoryForTicketType(ticketType);
 
-  console.log('ticketNumber:', ticketNumber);
+  console.log('ticketID:', ticketID);
   console.log('ticketTitle:', ticketTitle);
   console.log('ticketType:', ticketType);
   console.log('ticketCategory:', ticketCategory);
 
-  if (ticketNumber && ticketTitle && ticketCategory) {
-    const branchName = `${ticketCategory}/${ticketNumber}_${ticketTitle.replace(/\s+/g, '-').toLowerCase()}`;
+  let branchName = null;
+  let errorMessage = null;
+
+  if (ticketID && ticketTitle && ticketCategory) {
+    branchName = `${ticketCategory}/${ticketID}_${ticketTitle.replace(/\s+/g, '-').toLowerCase()}`;
     console.log('branchName:', branchName);
-    return branchName;
+  } else {
+    errorMessage = getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory);
   }
-  return null;
+
+  return { branchName, errorMessage };
 }
+
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getBranchName") {
-    const branchName = getBranchName();
-    sendResponse({ branchName: branchName });
+    const { branchName, errorMessage } = getBranchName();;
+    sendResponse({
+      branchName: branchName,
+      errorMessage: errorMessage
+    });
   }
 });
