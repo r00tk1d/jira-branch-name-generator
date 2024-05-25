@@ -1,0 +1,2 @@
+- better icon
+- add shortcut
