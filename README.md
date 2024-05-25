@@ -23,10 +23,3 @@ The branch name has the following structure:
 
 4. **Load the Unpacked Extension**
    - Click "Load unpacked" and select the cloned folder.
-
-
-
-
-
-Error: als prefix message
-icon anpassen
