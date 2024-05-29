@@ -36,6 +36,14 @@ function getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory) {
   return errorMessage;
 }
 
+const replaceGermanChars = (str) => {
+  return str
+      .replace(/ü/g, 'ue')
+      .replace(/ö/g, 'oe')
+      .replace(/ä/g, 'ae')
+      .replace(/ß/g, 'ss');
+};
+
 
 function getBranchName() {
   const ticketIDElement = document.getElementById('key-val');
@@ -56,7 +64,12 @@ function getBranchName() {
   let errorMessage = null;
 
   if (ticketID && ticketTitle && ticketCategory) {
-    branchName = `${ticketCategory}/${ticketID}-${ticketTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-').toLowerCase()}`;
+    const sanitizedTitle = replaceGermanChars(ticketTitle)
+      .replace(/[^a-zA-Z0-9\s]/g, '') // Remove non-alphanumeric characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .toLowerCase();
+
+    branchName = `${ticketCategory}/${ticketID}-${sanitizedTitle}`;
     console.log('branchName:', branchName);
   } else {
     errorMessage = getErrorMessage(ticketID, ticketTitle, ticketType, ticketCategory);
