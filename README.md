@@ -6,9 +6,15 @@ The branch name has the following structure:
 
 `<category>/<JIRA-ID>-<short-description>`
 
-1. Category: The category is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
-2. JIRA ID
-3. Short Description: The title of the jira ticket in lower, kebap case. The extension also removes any character that is not a letter or a digit.
+1. `<category>`: 
+   - The category is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
+   - Example: `bugifx`
+2. `<JIRA-ID>`:
+   - The JIRA ID of the ticket.
+   - Example: `ABC-12345`
+3. `<short-description>`: 
+   - The title of the jira ticket in lower, kebap case. The extension also removes any character that is not a letter or a digit and converts some special characters.
+   - Example: `Backend | Übermittlung von PDF nicht möglich` -> `backend-uebermittlung-von-pdf-nicht-moeglich`
 
 ## Installation
 
@@ -23,3 +29,11 @@ The branch name has the following structure:
 
 4. **Load the Unpacked Extension**
    - Click "Load unpacked" and select the cloned folder.
+
+## Set a Shortcut
+
+1. **Open Chrome Extensions Keyboard Shortcuts Page**
+   - Go to `chrome://extensions/shortcuts` in Google Chrome (or `brave://extensions/shortcuts` in Brave).
+
+2. **Create a custom shortcut**
+   - Add your custom shortcut to activate the extension with. A recommended shortcut is `Alt+Shift+B`.
