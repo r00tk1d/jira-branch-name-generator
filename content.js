@@ -64,10 +64,9 @@ function getBranchName() {
   let errorMessage = null;
 
   if (ticketID && ticketTitle && ticketCategory) {
-    const sanitizedTitle = replaceGermanChars(ticketTitle)
-      .replace(/[^a-zA-Z0-9\s]/g, '') // Remove non-alphanumeric characters
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .toLowerCase();
+    const sanitizedTitle = replaceGermanChars(ticketTitle.toLowerCase())
+      .replace(/[^a-z0-9\s]/g, '') // Remove non-alphanumeric characters
+      .replace(/\s+/g, '-'); // Replace spaces with hyphens
 
     branchName = `${ticketCategory}/${ticketID}-${sanitizedTitle}`;
     console.log('branchName:', branchName);
