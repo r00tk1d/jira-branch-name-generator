@@ -1,9 +1,9 @@
 const TicketTypeMap = {
   "Bug": "bugfix",
-  "Technical Debt": "bugfix",
+  "Technical Debt": "debt",
   "Story": "feature",
-  "Sub-task": "feature",
-  "Task": "feature",
+  "Sub-task": "task",
+  "Task": "task",
   // Add other mappings as needed
 };
 
