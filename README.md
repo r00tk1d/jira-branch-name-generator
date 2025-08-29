@@ -8,12 +8,12 @@ The branch name has the following structure:
 
 1. `<category>`: 
    - The category is defined by the ticket type. This is mapped with the `ticketTypeMap` in the `content.js`. Feel free to adjust this map for your needs.
-   - Example: `bugifx`
+   - Example: `bugfix`
 2. `<JIRA-ID>`:
    - The JIRA ID of the ticket.
    - Example: `ABC-12345`
 3. `<short-description>`: 
-   - The title of the jira ticket in lower, kebap case. The extension also removes any character that is not a letter or a digit and converts some special characters.
+   - The title of the jira ticket in lower, kebap case. The extension first converts german special characters (ä, ö, ü, ß) and removes any other character that is not in the english alphabet or a digit.
    - Example: `Backend | Übermittlung von PDF nicht möglich` -> `backend-uebermittlung-von-pdf-nicht-moeglich`
 
 ## Installation
