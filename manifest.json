@@ -7,12 +7,23 @@
         "activeTab",
         "clipboardWrite"
     ],
+    "background": {
+        "service_worker": "background.js"
+    },
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
             "16": "icon.png",
             "48": "icon.png",
             "128": "icon.png"
+        }
+    },
+    "commands": {
+        "generate-branch": {
+            "suggested_key": {
+                "default": "Alt+B"
+            },
+            "description": "Generate a branch name from a Jira ticket and copy it to the clipboard"
         }
     },
     "content_scripts": [

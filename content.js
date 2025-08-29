@@ -77,13 +77,25 @@ function getBranchName() {
   return { branchName, errorMessage };
 }
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.command === "generate-branch") {
+      createResponse(sendResponse);
+    }
+});
+
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getBranchName") {
-    const { branchName, errorMessage } = getBranchName();;
-    sendResponse({
-      branchName: branchName,
-      errorMessage: errorMessage
-    });
+    createResponse(sendResponse);
   }
 });
+
+
+function createResponse(sendResponse) {
+  const { branchName, errorMessage } = getBranchName();;
+  sendResponse({
+    branchName: branchName,
+    errorMessage: errorMessage
+  });
+}
+

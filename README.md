@@ -1,6 +1,6 @@
 # Jira Branch Name Generator to Clipboard Chromium Extension
 
-This extension generates the branch name for a given jira ticket. To generate and copy the branch name, just click on the extension icon or [set a custom shortcut](#set-a-shortcut).
+This extension generates the branch name for a given jira ticket. To generate and copy the branch name, just click on the extension icon or press `Alt+B`.
 
 The branch name has the following structure:
 
@@ -29,11 +29,3 @@ The branch name has the following structure:
 
 4. **Load the Unpacked Extension**
    - Click "Load unpacked" and select the cloned folder.
-
-## Set a Shortcut
-
-1. **Open Chrome Extensions Keyboard Shortcuts Page**
-   - Go to `chrome://extensions/shortcuts` in Google Chrome (or `brave://extensions/shortcuts` in Brave).
-
-2. **Create a custom shortcut**
-   - Add your custom shortcut to activate the extension with. A recommended shortcut is `Alt+Shift+B`.
